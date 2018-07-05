@@ -9,6 +9,18 @@ android {
         versionCode getCode()
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "16e0274da5eb917708aea6c2", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
 
     compileOptions {
@@ -54,7 +66,7 @@ android {
             signingConfig signingConfigs.signConfig
             buildConfigField "boolean", "isRelease", "true"
             manifestPlaceholders = [
-                    APP_NAME: "Sundae release"
+                    APP_NAME: "产学研微平台"
             ]
         }
 
@@ -67,7 +79,7 @@ android {
             zipAlignEnabled false
             shrinkResources false
             manifestPlaceholders = [
-                    APP_NAME: "Sundae debug"
+                    APP_NAME: "产学研微平台 debug"
             ]
         }
     }
@@ -82,7 +94,7 @@ android {
             def newApkName
 
             if (variant.buildType.debuggable) {
-                newApkName = "debug_" + getTime() + "_" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk"
+                newApkName = "debug_" + getTime() + "_" + defaultConfig.versionName + "_" + defaultConfig.versionCode + ".apk"
             } else {
                 newApkName = getTime() + "-" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk"
             }
@@ -92,7 +104,7 @@ android {
 }
 
 def getTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyy-MM-dd hhmmss", TimeZone.getTimeZone("UTC"))
 }
 
 def getCode() {
@@ -113,7 +125,5 @@ dependencies {
         implementation project(':component_library')
     } else {
         implementation project(':component_library')
-
     }
-
 }

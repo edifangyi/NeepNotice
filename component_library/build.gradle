@@ -64,6 +64,8 @@ dependencies {
 
     api rootProject.ext.dependencies.klog
     api rootProject.ext.dependencies.utilcode
+    api rootProject.ext.dependencies.permission
+
 
     api rootProject.ext.dependencies.kalle
     api rootProject.ext.dependencies.gson
@@ -81,8 +83,9 @@ dependencies {
 
     api rootProject.ext.dependencies.rxbinding
 
-    api rootProject.ext.dependencies.tencentCore
-    api rootProject.ext.dependencies.tencentMessaging
-    api rootProject.ext.dependencies.tencentCrash
+    api rootProject.ext.dependencies.SmartRefreshLayout
+    api rootProject.ext.dependencies.SmartRefreshHeader
 
+    api rootProject.ext.dependencies.jpush
+    api rootProject.ext.dependencies.jcore
 }

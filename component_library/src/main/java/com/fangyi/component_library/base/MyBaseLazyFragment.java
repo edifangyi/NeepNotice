@@ -1,4 +1,4 @@
-package com.fangyi.component_library.app;
+package com.fangyi.component_library.base;
 
 import android.widget.Toast;
 

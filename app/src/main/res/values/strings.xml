@@ -1,3 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NeepuNotice</string>
+
+    <string-array name="remind">
+        <item>系统提醒</item>
+        <item>自定义提醒</item>
+        <item>取消提醒</item>
+    </string-array>
+
 </resources>

@@ -8,7 +8,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
     <color name="green">#8ec31f</color>
-    <color name="red">#ff0000</color>
+    <color name="red">#ff4545</color>
     <color name="orange">#FFA500</color>
     <color name="yellow">#FFFF00</color>
     <color name="indigo">#008B8B</color>
@@ -16,7 +16,7 @@
     <color name="purple">#800080</color>
     <color name="gray">#888888</color>
     <color name="grey_dark">#545454</color>
-    <color name="gray_shallow">#f4f4f4</color>
+    <color name="gray_shallow">#eaeaea</color>
     <color name="transparent">#00000000</color>
 
 </resources>
