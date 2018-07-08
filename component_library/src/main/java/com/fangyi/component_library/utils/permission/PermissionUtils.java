@@ -13,6 +13,8 @@ import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 import com.yanzhenjie.permission.Setting;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,15 +31,9 @@ public class PermissionUtils {
     private String[] mPermissions = builder.mPermissions;
     private OnGrantedListener mOnGrantedListener = builder.mOnGrantedListener;
 
-    public interface OnGrantedListener {
-        void onSuccess();
-    }
 
     public PermissionUtils() {
-
         requestPermission(mPermissions);
-
-
     }
 
     private void requestPermission(String... permissions) {
@@ -110,6 +106,10 @@ public class PermissionUtils {
                 .start();
     }
 
+    public interface OnGrantedListener {
+        void onSuccess();
+    }
+
     public static Builder newBuilder() {
         if (builder == null) {
             synchronized (PermissionUtils.class) {
@@ -132,6 +132,15 @@ public class PermissionUtils {
 
         public Builder requestPermission(String... permissions) {
             mPermissions = permissions;
+            return this;
+        }
+
+        public Builder requestPermissionGroup(String[]... groups) {
+            List<String> permissionList = new ArrayList<>();
+            for (String[] group : groups) {
+                permissionList.addAll(Arrays.asList(group));
+            }
+            mPermissions = permissionList.toArray(new String[permissionList.size()]);
             return this;
         }
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fangyi.component_library.http;
+package com.fangyi.component_library.utils.kalle;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -24,7 +24,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 /**
  * Created by YanZhenjie on 2018/3/26.
  */
-public class HttpEntity implements Parcelable {
+public class BaseRespose implements Parcelable {
 
     @JSONField(name = "code")
     private int mCode;
@@ -35,10 +35,10 @@ public class HttpEntity implements Parcelable {
     @JSONField(name = "data")
     private String mData;
 
-    public HttpEntity() {
+    public BaseRespose() {
     }
 
-    protected HttpEntity(Parcel in) {
+    protected BaseRespose(Parcel in) {
         mCode = in.readInt();
         mMessage = in.readString();
         mData = in.readString();
@@ -56,15 +56,15 @@ public class HttpEntity implements Parcelable {
         return 0;
     }
 
-    public static final Creator<HttpEntity> CREATOR = new Creator<HttpEntity>() {
+    public static final Creator<BaseRespose> CREATOR = new Creator<BaseRespose>() {
         @Override
-        public HttpEntity createFromParcel(Parcel in) {
-            return new HttpEntity(in);
+        public BaseRespose createFromParcel(Parcel in) {
+            return new BaseRespose(in);
         }
 
         @Override
-        public HttpEntity[] newArray(int size) {
-            return new HttpEntity[size];
+        public BaseRespose[] newArray(int size) {
+            return new BaseRespose[size];
         }
     };
 

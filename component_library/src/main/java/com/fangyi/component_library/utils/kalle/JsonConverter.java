@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fangyi.component_library.http;
+package com.fangyi.component_library.utils.kalle;
 
 import android.content.Context;
 
@@ -49,24 +49,24 @@ public class JsonConverter implements Converter {
         KLog.e("Server Data: " + serverJson);
 
         if (code >= 200 && code < 300) { // Http is successful.
-            HttpEntity httpEntity;
+            BaseRespose baseRespose;
             try {
-                httpEntity = JSON.parseObject(serverJson, HttpEntity.class);
+                baseRespose = JSON.parseObject(serverJson, BaseRespose.class);
             } catch (Exception e) {
-                httpEntity = new HttpEntity();
-                httpEntity.setCode(-1);
-                httpEntity.setMessage(mContext.getString(R.string.http_server_data_format_error));
+                baseRespose = new BaseRespose();
+                baseRespose.setCode(-1);
+                baseRespose.setMessage(mContext.getString(R.string.http_server_data_format_error));
             }
 
-            if (httpEntity.getCode() == 1) { // The server successfully processed the business.
+            if (baseRespose.getCode() == 1) { // The server successfully processed the business.
                 try {
-                    succeedData = JSON.parseObject(httpEntity.getData(), succeed);
+                    succeedData = JSON.parseObject(baseRespose.getData(), succeed);
                 } catch (Exception e) {
                     failedData = (F) mContext.getString(R.string.http_server_data_format_error);
                 }
             } else {
                 // The server failed to read the wrong information.
-                failedData = (F) httpEntity.getMessage();
+                failedData = (F) baseRespose.getMessage();
             }
 
         } else if (code >= 400 && code < 500) {

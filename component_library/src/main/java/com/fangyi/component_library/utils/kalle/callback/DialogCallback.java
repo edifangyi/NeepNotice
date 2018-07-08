@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fangyi.component_library.http;
+package com.fangyi.component_library.utils.kalle.callback;
 
 import android.content.Context;
 
@@ -98,7 +98,6 @@ public abstract class DialogCallback<S> extends Callback<S, String> {
         } else {
             message = mContext.getString(R.string.http_exception_unknow_error);
         }
-
 
         onResponse(SimpleResponse.<S, String>newBuilder()
                 .failed(message)

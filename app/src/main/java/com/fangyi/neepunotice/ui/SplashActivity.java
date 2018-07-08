@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.fangyi.component_library.base.BaseActivity;
 import com.fangyi.component_library.utils.permission.PermissionUtils;
+import com.fangyi.component_library.utils.update.UpdateUtils;
 import com.fangyi.neepunotice.R;
 import com.yanzhenjie.permission.Permission;
 
@@ -37,19 +38,17 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         initView();
-//        PermissionUtils.newBuilder()
-//                .requestPermission(
-//                        Permission.ACCESS_FINE_LOCATION,
-//                        Permission.ACCESS_COARSE_LOCATION,
-//                        Permission.READ_EXTERNAL_STORAGE,
-//                        Permission.WRITE_EXTERNAL_STORAGE,
-//                        Permission.READ_PHONE_STATE,
-//                        Permission.RECEIVE_MMS,
-//                        Permission.RECEIVE_SMS,
-//                        Permission.RECORD_AUDIO)
-//                .setOnGrantedListener(() -> mHandler.postDelayed(() -> startAnim(), 1000));
 
-        mHandler.postDelayed(() -> startAnim(), 1000);
+        PermissionUtils.newBuilder()
+                .requestPermission(
+                        Permission.WRITE_EXTERNAL_STORAGE,
+                        Permission.READ_EXTERNAL_STORAGE)
+                .setOnGrantedListener(new PermissionUtils.OnGrantedListener() {
+                    @Override
+                    public void onSuccess() {
+                        mHandler.postDelayed(() -> startAnim(), 1000);
+                    }
+                }).builder(mContext);
 
     }
 
@@ -66,7 +65,31 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
 
-                MainActivity.startAction((Activity) mContext, true);
+                UpdateUtils.getConfig()
+                        .setUrl("http://www.mocky.io/v2/5b40b5322f0000810079e0e1")
+                        .setOnUpdateListener(new UpdateUtils.OnUpdateListener() {
+                            @Override
+                            public void onNoUpdate() {
+                                MainActivity.startAction((Activity) mContext, true);
+                            }
+
+                            @Override
+                            public void onLater() {
+                                MainActivity.startAction((Activity) mContext, true);
+                            }
+
+                            @Override
+                            public void onIgnore(String newVersion) {
+                                MainActivity.startAction((Activity) mContext, true);
+                            }
+
+                            @Override
+                            public void onError(String message) {
+
+                            }
+                        })
+                        .check(mContext);
+
             }
         });
     }

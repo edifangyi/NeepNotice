@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fangyi.component_library.http;
+package com.fangyi.component_library.utils.kalle.callback;
 
 import android.content.Context;
 
@@ -35,7 +35,7 @@ import java.lang.reflect.Type;
  */
 public abstract class SimpleCallback<S> extends Callback<S, String> {
 
-    private Context mContext;
+    public Context mContext;
 
     public SimpleCallback(Context context) {
         this.mContext = context;
@@ -54,6 +54,18 @@ public abstract class SimpleCallback<S> extends Callback<S, String> {
 
     @Override
     public void onStart() {
+
+    }
+
+
+    @Override
+    public void onEnd() {
+
+    }
+
+    @Override
+    public void onCancel() {
+
     }
 
     @Override

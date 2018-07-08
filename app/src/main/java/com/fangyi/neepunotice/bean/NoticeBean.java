@@ -16,7 +16,7 @@ public class NoticeBean {
     public NoticeBean(String title, String time, boolean read) {
         this.title = title;
         this.time = time;
-        this.read = read;
+        this.read = read =false;
     }
 
     public String getTitle() {

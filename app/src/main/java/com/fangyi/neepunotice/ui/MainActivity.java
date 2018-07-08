@@ -95,9 +95,13 @@ public class MainActivity extends BaseActivity {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                NoticeDetailsActivity.startAction((Activity) mContext, false);
-                showList.get(position).setRead(true);
-                mAdapter.notifyItemChanged(position);
+                if (position == 0) {
+                    NoticeDetailsWebActivity.startAction((Activity) mContext, false);
+                } else {
+                    NoticeDetailsActivity.startAction((Activity) mContext, false);
+                    showList.get(position).setRead(true);
+                    mAdapter.notifyItemChanged(position);
+                }
             }
         });
     }
